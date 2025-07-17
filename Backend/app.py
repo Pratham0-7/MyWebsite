@@ -57,7 +57,7 @@ def generate():
     headers = {
     "Authorization": f"Bearer {config.OPENROUTER_API_KEY}",
     "Content-Type": "application/json",
-    "HTTP-Referer": "http://localhost:8000",  # required by OpenRouter
+    "HTTP-Referer": "https://fastfullstack.netlify.app",  # required by OpenRouter
     "X-Title": "SmartWriter"
 }
 
