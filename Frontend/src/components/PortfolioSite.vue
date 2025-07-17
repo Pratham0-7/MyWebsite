@@ -205,7 +205,7 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const res = await fetch('http://localhost:8000/send-email', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/send-email`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
