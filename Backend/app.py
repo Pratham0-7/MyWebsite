@@ -7,7 +7,7 @@ import requests
 import config
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}}, methods=["GET", "POST", "OPTIONS"])
 
 # MongoDB setup
 client = MongoClient(config.MONGO_URI)
