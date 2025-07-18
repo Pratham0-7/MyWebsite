@@ -4,6 +4,7 @@
     <section
       class="hero"
       style="
+      border-radius: 10px;
         background: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1600&q=80')
           no-repeat center center / cover;
       "
@@ -29,7 +30,7 @@
           <p class="section-title"><b>What You Get:</b></p>
           <p>Mobile-friendly, clean layout, fast load — built to show off your skills or brand.</p>
           <p>Delivered in 2–3 days. Hosted and handed over fully ready to use.</p>
-          <p class="price">Price: ₹5,000</p>
+          <!-- <p class="price">Price: ₹5,000</p> -->
           <a href="/portfolio-demo" class="hero-button">View Example</a>
         </div>
 
@@ -56,7 +57,7 @@
           <p class="highlight">
             Delivered in 5–6 days, fully hosted and customized to your business or brand.
           </p>
-          <p class="price">Price: ₹8,000</p>
+          <!-- <p class="price">Price: ₹8,000</p> -->
           <a href="/landing-demo" class="hero-button">View Example</a>
         </div>
 
@@ -83,7 +84,7 @@
           <p class="highlight">
             You tell me the use-case. I make it real — no stress, just results.
           </p>
-          <p class="price">Price: ₹15,000</p>
+          <!-- <p class="price">Price: ₹15,000</p> -->
           <a href="/ai-tool-demo" class="hero-button">View Example</a>
         </div>
 
@@ -97,7 +98,7 @@
           <h3>Got An Idea?</h3>
           <p>
             I take on full AI system builds too — think dashboards, multi-step workflows, business
-            automations, or advanced GPT setups.
+            automations, or advanced setups.
           </p>
           <ul class="feature-list">
             <li>Custom layout and flow designed around your goal</li>
@@ -107,7 +108,7 @@
           <p class="highlight">
             You focus on the idea. I bring it to life — with speed, clarity, and no chaos.
           </p>
-          <p class="price">Price: Starts at ₹20,000 depending on scope</p>
+          <!-- <p class="price">Price: Starts at ₹20,000 depending on scope</p> -->
           <a href="#contact" class="hero-button">Let’s Talk</a>
         </div>
 
@@ -120,8 +121,8 @@
         >
           <h3>Monthly Management</h3>
           <p>Ongoing support, scaling & maintenance for your product.</p>
-          <p class="price">Price: ₹5,000–₹8,000/month</p>
           <p style="font-size: 13px">Includes 3–4 major updates/month<br />+ 5–6 minor changes</p>
+          <!-- <p class="price">Price: ₹5,000–₹8,000/month</p> -->
           <a href="#contact" class="hero-button">Let’s Talk</a>
         </div>
       </div>

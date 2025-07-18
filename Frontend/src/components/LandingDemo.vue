@@ -46,7 +46,6 @@
         <div class="price-card"
           style="background: url('https://plus.unsplash.com/premium_photo-1681711650396-c4ba5767de04?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center / cover"
         >
-        >
           <h3 class="coffee-text">Monthly Plan</h3>
           <p class="coffee-price">₹2,999</p>
           <p class="coffee-sub">Get 1 coffee delivered daily. Cancel anytime.</p>
