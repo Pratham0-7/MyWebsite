@@ -182,7 +182,7 @@ export default {
   background: #f1f5f9;
   padding: 10px;
   border-radius: 10px;
-  height: 200px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
