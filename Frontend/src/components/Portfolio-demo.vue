@@ -158,7 +158,7 @@ export default {
 }
 .grid-4 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 12px;
   justify-items: center;
   margin-top: 20px;
@@ -173,10 +173,11 @@ export default {
 }
 .project-grid-2 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   margin-top: 20px;
 }
+
 .project-card.square {
   background: #f1f5f9;
   padding: 10px;
