@@ -79,7 +79,7 @@ def generate():
         return jsonify({"response": response_text})
     except Exception as e:
         print("OpenRouter error:", e)
-        return jsonify({"response": "⚠️ OpenRouter response failed."}), 500
+        return jsonify({"response": "Unable to generate the output at this given moment. Please Try again later."}), 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=8000)
