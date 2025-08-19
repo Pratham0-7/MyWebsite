@@ -47,39 +47,59 @@ def send_email():
 
 @app.route("/generate", methods=["POST"])
 def generate():
-    data = request.json
-    prompt = data.get("prompt", "")
-
-    if not prompt:
-        return jsonify({"response": "⚠️ Prompt is empty."}), 400
-
-    url = "https://openrouter.ai/api/v1/chat/completions"
-    headers = {
-    "Authorization": f"Bearer {config.OPENROUTER_API_KEY}",
-    "Content-Type": "application/json",
-    "HTTP-Referer": "https://fastfullstack.netlify.app",  # required by OpenRouter
-    "X-Title": "SmartWriter"
-}
-
-    payload = {
-    "model": "openai/gpt-3.5-turbo",
-    "messages": [
-        {
-            "role": "user",
-            "content": prompt
-        }
-    ]
-}
-
-
     try:
-        res = requests.post(url, headers=headers, json=payload)
-        res.raise_for_status()
-        response_text = res.json()['choices'][0]['message']['content']
-        return jsonify({"response": response_text})
+        data = request.get_json(silent=True) or {}
+        prompt = (data.get("prompt") or "").strip()
+        if not prompt:
+            return jsonify({"response": "⚠️ Prompt is empty."}), 400
+
+        url = "https://openrouter.ai/api/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {config.OPENROUTER_API_KEY}",
+            "Content-Type": "application/json",
+            "X-Title": "SmartWriter",
+            # "Referer": "https://fastfullstack.netlify.app",  # optional; if you include it, use this exact key
+        }
+        payload = {
+            "model": "openai/gpt-4o-mini",
+            "messages": [
+                {"role": "system", "content": "You are a helpful writing assistant."},
+                {"role": "user", "content": prompt},
+            ],
+        }
+
+        res = requests.post(url, headers=headers, json=payload, timeout=30)
+        if not res.ok:
+            try:
+                print("OpenRouter error:", res.status_code, res.json())
+            except Exception:
+                print("OpenRouter error:", res.status_code, res.text)
+            code = res.status_code
+            if code == 401:
+                msg = "Invalid/missing API key."
+            elif code == 402:
+                msg = "Insufficient credits for the selected model."
+            elif code == 404:
+                msg = "Model unavailable—try a different one."
+            elif code == 429:
+                msg = "Rate limited—please retry shortly."
+            else:
+                msg = f"Upstream error ({code})."
+            return jsonify({"response": f"⚠️ {msg}"}), 502
+
+        j = res.json()
+        content = (j.get("choices", [{}])[0].get("message", {}) or {}).get("content")
+        if not content:
+            print("Unexpected OpenRouter response:", j)
+            return jsonify({"response": "⚠️ Unexpected response format from model."}), 502
+
+        return jsonify({"response": content})
+    except requests.Timeout:
+        return jsonify({"response": "⚠️ Model request timed out. Try again."}), 504
     except Exception as e:
-        print("OpenRouter error:", e)
-        return jsonify({"response": "Unable to generate the output at this given moment. Please Try again later."}), 500
+        print("Generate() exception:", repr(e))
+        return jsonify({"response": "⚠️ Server error while generating text."}), 500
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=8000)
